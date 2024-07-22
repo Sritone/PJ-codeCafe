@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>카페 관리</h1>
+    <form id="cafeForm">
+        <label for="name">카페 이름:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="lat">위도:</label><br>
+        <input type="number" id="lat" name="lat" required><br>
+        <label for="lng">경도:</label><br>
+        <input type="number" id="lng" name="lng" required><br>
+        <label for="description">설명:</label><br>
+        <textarea id="description" name="description" required></textarea><br>
+        <button type="submit">카페 추가</button>
+    </form>
+    <h2>기존 카페 목록</h2>
+    <ul id="cafeList"></ul>
+    <script src="admin.js"></script>
+</body>
+</html>
