@@ -22,43 +22,28 @@ app.get('/cafes', (req, res) => {
 
 // 새 카페 추가
 app.post('/cafes', (req, res) => {
-  const {name, lat, lng, description} = req.body;
+  const { name, lat, lng, description } = req.body;
   const stmt = db.prepare("INSERT INTO cafes (name, lat, lng, description) VALUES (?, ?, ?, ?)");
   stmt.run(name, lat, lng, description, function(err) {
     if (err) {
-      res.status(500).json({error: err.message});
+      res.status(500).json({ error: err.message });
       return;
     }
-    res.json({id: this.lastID});
-  });
-  stmt.finalize();
-});
-
-// 카페 수정
-app.put('/cafes/:id', (req, res) => {
-  const {id} = req.params;
-  const {name, lat, lng, description} = req.body;
-  const stmt = db.prepare("UPDATE cafes SET name = ?, lat = ?, lng = ?, description = ? WHERE id = ?");
-  stmt.run(name, lat, lng, description, id, function(err) {
-    if (err) {
-      res.status(500).json({error: err.message});
-      return;
-    }
-    res.json({changes: this.changes});
+    res.json({ id: this.lastID });
   });
   stmt.finalize();
 });
 
 // 카페 삭제
 app.delete('/cafes/:id', (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const stmt = db.prepare("DELETE FROM cafes WHERE id = ?");
   stmt.run(id, function(err) {
     if (err) {
-      res.status(500).json({error: err.message});
+      res.status(500).json({ error: err.message });
       return;
     }
-    res.json({changes: this.changes});
+    res.json({ changes: this.changes });
   });
   stmt.finalize();
 });
